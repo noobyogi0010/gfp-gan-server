@@ -32,6 +32,10 @@ def convertToBase64(filePath):
     with open(filePath, "rb") as img:
         return base64.b64encode(img.read())
 
+@app.route("/")
+@cross_origin
+def index():
+    return "<h1>Welcome to the powerhouse of GFP-GAN App !!</h1>"
 
 @app.route("/upload", methods=['POST', 'OPTIONS'])
 @cross_origin()
@@ -62,14 +66,14 @@ def uploadImages():
             for img in imgs:
                 fname = secure_filename(img.filename)
                 img.save(os.path.join(app.config['UPLOAD_FOLDER'], fname))
-        
+
         return redirect(url_for('applyGfpGan'))
 
 @app.route('/apply-gfp-gan', methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin()
 def applyGfpGan():
     """Inference demo for GFPGAN.
-    All credit to Xintao et al. at https://github.com/TencentARC/GFPGAN for writing this script i've adapted here for Flask. 
+    All credit to Xintao et al. at https://github.com/TencentARC/GFPGAN for writing this script i've adapted here for Flask.
     """
 
     parser = argparse.ArgumentParser()
@@ -121,7 +125,7 @@ def applyGfpGan():
             )
     else:
         bg_upsampler = None
-    
+
     args.test_path = 'inputs/whole_imgs'
 
     restorer = GFPGANer(
@@ -189,13 +193,13 @@ def applyGfpGan():
     onlyFiles = [f for f in os.listdir('results/restored_imgs') if isfile(join('results/restored_imgs', f))]
     if '.DS_Store' in onlyFiles:
         onlyFiles.remove('.DS_Store')
-    
+
     resFileNames = next(os.walk(args.save_root + 'restored_imgs'), (None, None, []))[2]
     resp = []
     for img in onlyFiles:
         with open(args.save_root+'/restored_imgs/'+img, 'rb') as file:
             resp.append(str(base64.b64encode(file.read())))
-    
+
     print(onlyFiles)
     print(type(resp))
 
