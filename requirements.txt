@@ -12,3 +12,4 @@ yapf
 Pillow
 Flask
 Flask-Cors
+gunicorn
