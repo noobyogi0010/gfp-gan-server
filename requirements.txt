@@ -13,3 +13,6 @@ Pillow
 Flask
 Flask-Cors
 gunicorn
+ffmpeg
+libsm6
+libxext6
