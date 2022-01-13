@@ -1,9 +1,12 @@
-﻿https://download.pytorch.org/whl/cpu/torch-1.7.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
-numpy<1.21  # numba requires numpy<1.21,>=1.17
-opencv-python-headless==4.2.0.32
-https://download.pytorch.org/whl/cpu/torchvision-0.8.0-cp37-cp37m-linux_x86_64.whl
+﻿# https://download.pytorch.org/whl/cpu/torch-1.7.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
+torch>=1.7.0
+torchvision>=0.8.0
+numpy>=1.20  # numba requires numpy<1.21,>=1.17
+opencv-python>=4.2.0
+# https://download.pytorch.org/whl/cpu/torchvision-0.8.0-cp37-cp37m-linux_x86_64.whl
 scipy
 tqdm
+basicsr
 facexlib>=0.2.0.3
 lmdb
 pyyaml
@@ -13,4 +16,4 @@ Pillow
 Flask
 Flask-Cors
 gunicorn
-
+google-python-cloud-debugger
