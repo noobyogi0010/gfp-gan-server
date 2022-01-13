@@ -1,12 +1,13 @@
+# import googleclouddebugger
+# googleclouddebugger.enable(breakpoint_enable_canary=True)
+
 from genericpath import isfile
 from posixpath import join
 import torch
-import torchvision.transforms as transforms
-from PIL import Image
 
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, jsonify
 from flask.helpers import url_for
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 import argparse
 import os
@@ -14,10 +15,7 @@ import sys
 import cv2
 import glob
 import numpy as np
-# from basicsr.utils import isfile, join
-# import basicsr
 import base64
-# import json
 
 from werkzeug.utils import redirect, secure_filename
 
@@ -40,9 +38,9 @@ def index():
 @app.route("/upload", methods=['POST', 'OPTIONS'])
 @cross_origin()
 def uploadImages():
-    src = 'inputs/whole_imgs/'
-    des = 'inputs/saved/'
-    out = 'results/restored_imgs'
+    src = './inputs/whole_imgs/'
+    des = './inputs/saved/'
+    out = './results/restored_imgs/'
 
     for f in os.listdir(src):
         os.remove(os.path.join(src, f))
@@ -207,4 +205,4 @@ def applyGfpGan():
     return jsonify(resp)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
