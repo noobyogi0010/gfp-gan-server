@@ -28,11 +28,11 @@ This can be considered as the base version of the server, as I am planning to de
 
 - [x] Deploying the server on `GCP Cloud Run` or similar service.
 
-- [] Make the code more modular by breaking obvious implementations into independent components.
+- [ ] Make the code more modular by breaking obvious implementations into independent components.
 
-- [] Improve the code quality by learning more best practices for React and Typescript.
+- [ ] Improve the code quality by learning more best practices for React and Typescript.
 
-- [] Reducing the dependency on the inference created by GFP-GAN creators in their github repo.
+- [ ] Reducing the dependency on the inference created by GFP-GAN creators in their github repo.
 
 ## Contributor Guide
 
