@@ -21,7 +21,7 @@ from werkzeug.utils import redirect, secure_filename
 
 from gfpgan import GFPGANer
 
-UPLOAD_FOLDER = 'inputs/whole_imgs'
+UPLOAD_FOLDER = './inputs/whole_imgs/'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -46,6 +46,8 @@ def uploadImages():
         os.remove(os.path.join(src, f))
     for f in os.listdir(des):
         os.remove(os.path.join(des, f))
+    # if not os.path.exists(out):
+    #     os.makedirs(out)
     for f in os.listdir(out):
         os.remove(os.path.join(out, f))
 
@@ -124,7 +126,7 @@ def applyGfpGan():
     else:
         bg_upsampler = None
 
-    args.test_path = 'inputs/whole_imgs'
+    args.test_path = './inputs/whole_imgs/'
 
     restorer = GFPGANer(
         model_path=args.model_path,
@@ -154,7 +156,6 @@ def applyGfpGan():
 
         # save faces
         for i, (cFace, rFace) in enumerate(zip(croppedFaces, restoredFaces)):
-            print('1')
             # save cropped face
             saveCropPath = os.path.join(args.save_root, 'cropped_faces', f'{name}_{i:02d}.png')
             # cv2.imwrite(cFace, saveCropPath)
@@ -195,6 +196,7 @@ def applyGfpGan():
     resFileNames = next(os.walk(args.save_root + 'restored_imgs'), (None, None, []))[2]
     resp = []
     for img in onlyFiles:
+        print('>>>> Save root = ', args.save_root)
         with open(args.save_root+'/restored_imgs/'+img, 'rb') as file:
             resp.append(str(base64.b64encode(file.read())))
 
