@@ -26,13 +26,13 @@ If you are looking for the front-end implementation, then you can find it here: 
 
 This can be considered as the base version of the server, as I am planning to develop it further with much more enhancements. As of now following are the things that I have forethought to work upon in the upcoming months:
 
-- Deploying the server on `GCP Cloud Run` or similar service.
+- [x] Deploying the server on `GCP Cloud Run` or similar service.
 
-- Make the code more modular by breaking obvious implementations into independent components.
+- [] Make the code more modular by breaking obvious implementations into independent components.
 
-- Improve the code quality by learning more best practices for React and Typescript.
+- [] Improve the code quality by learning more best practices for React and Typescript.
 
-- Reducing the dependency on the inference created by GFP-GAN creators in their github repo.
+- [] Reducing the dependency on the inference created by GFP-GAN creators in their github repo.
 
 ## Contributor Guide
 
